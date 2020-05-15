@@ -1,0 +1,24 @@
+{
+  "name": "themoviedb",
+  "version": "1.0.0",
+  "description": "My badass Nuxt.js project",
+  "author": "linas23",
+  "private": true,
+  "scripts": {
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "generate": "nuxt generate"
+  },
+  "dependencies": {
+    "@lottiefiles/lottie-player": "^0.5.1",
+    "@nuxtjs/axios": "^5.3.6",
+    "@nuxtjs/dotenv": "^1.4.0",
+    "numeral": "^2.0.6",
+    "nuxt": "^2.0.0",
+    "vue-content-placeholders": "^0.2.1"
+  },
+  "devDependencies": {
+    "@nuxtjs/vuetify": "^1.0.0"
+  }
+}
