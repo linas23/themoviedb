@@ -16,9 +16,21 @@
               <br />
               <p>{{movie.overview}}</p>
               <v-row justify="space-around">
-                <v-col>Budget : {{movie.budget | format}}</v-col>
-                <v-col>Popularity : {{movie.vote_average}} / 10</v-col>
-                <v-col>Revenue : {{movie.revenue | format}}</v-col>
+                <v-col>
+                  Budget
+                  <br />
+                  {{movie.budget | format}}
+                </v-col>
+                <v-col>
+                  Popularity
+                  <br />
+                  {{movie.vote_average}} / 10
+                </v-col>
+                <v-col>
+                  Revenue
+                  <br />
+                  {{movie.revenue | format}}
+                </v-col>
               </v-row>
               <div class="title">Production Companies</div>
               <v-row>
@@ -33,7 +45,7 @@
       </v-card>
       <movieImages :id="movie.id"></movieImages>
       <characterList :id="movie.id"></characterList>
-      <!-- //recommended movies -->
+      <similarMovies :id="movie.id"></similarMovies>
     </div>
     <div v-else>
       <v-progress-linear indeterminate></v-progress-linear>
@@ -44,11 +56,13 @@
 <script>
 import movieImages from "~/components/movieImages";
 import characterList from "~/components/characterList";
+import similarMovies from "~/components/similarItems";
 import N from "numeral";
 export default {
   components: {
     movieImages,
-    characterList
+    characterList,
+    similarMovies
   },
   async asyncData({ store, route }) {
     let movie = await store.dispatch("getMovieDetails", route.params.id);

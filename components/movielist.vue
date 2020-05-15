@@ -1,9 +1,9 @@
 <template>
   <div>
     <v-container>
-      <div class="headline">Featured Movies</div>
+      <div class="display-1 my-5">Featured Movies</div>
       <v-row>
-        <v-col cols="6" md="4" v-for="(movie,index) in movies" :key="index">
+        <v-col cols="12" md="4" v-for="(movie,index) in movies" :key="index">
           <movieCard :data="movie"></movieCard>
         </v-col>
       </v-row>

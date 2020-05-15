@@ -32,7 +32,9 @@
     </v-navigation-drawer>
     <v-app-bar app :clipped-left="!drawer">
       <v-app-bar-nav-icon @click="drawer= !drawer" v-if="!drawer"></v-app-bar-nav-icon>
-      <v-toolbar-title v-if="!drawer">The Movies</v-toolbar-title>
+      <v-btn text to="/" v-if="!drawer">
+        <v-toolbar-title>The Movies</v-toolbar-title>
+      </v-btn>
     </v-app-bar>
     <v-content>
       <nuxt />
@@ -58,8 +60,7 @@ export default {
       drawer: false,
       links: [
         { title: "Home", to: "/", icon: "mdi-home" },
-        { title: "Latest Movies", to: "latest", icon: "mdi-movie" },
-        { title: "Trending", to: "trending", icon: "mdi-trending-up" }
+        { title: "Trending", to: "/trending", icon: "mdi-trending-up" }
       ]
     };
   }

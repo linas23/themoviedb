@@ -5,7 +5,6 @@ export const state = () => ({
     //lists 
     movie: [],
     tv: [],
-    series: [],
     mainImage: ''
 });
 export const getters = {
@@ -21,15 +20,16 @@ export const mutations = {
         state[type].push(...results);
     },
     setImage(state, url) {
-        console.log(url)
-        console.log('setting image')
         state.mainImage = url;
+    },
+    clearList(state, type) {
+        state[type] = [];
     }
 }
 export const actions = {
 
     async getList({ commit }, type) {
-        // movie tv series
+        commit('clearList', type);
         let { results } = await this.$axios.$get(`${base_url}discover/${type}?api_key=${api_key}`);
         commit('setList', { type, results });
     },
@@ -44,8 +44,22 @@ export const actions = {
     },
 
     async getCharacterList(context, id) {
-        // https://api.themoviedb.org/3/movie/{movie_id}/credits?api_key=<<api_key>>
         return await this.$axios.$get(`${base_url}movie/${id}/credits?api_key=${api_key}`);
+    },
+
+    async getSimilarItems(context, id) {
+        return await this.$axios.$get(`${base_url}movie/${id}/similar?api_key=${api_key}`);
+    },
+
+    async getTrending(context, type) {
+        const { results } = await this.$axios.$get(`${base_url}trending/${type}/week?api_key=${api_key}`);
+        return results;
+    },
+
+    async getTvDetail(context, id) {
+        // https://api.themoviedb.org/3/tv/{tv_id}?api_key=<<api_key>>&language=en-US
+        console.log(id)
+        return await this.$axios.$get(`${base_url}tv/${id}?api_key=${api_key}`)
     }
 
 
