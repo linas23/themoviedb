@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <v-select :items="items" label="Select a genre" solo></v-select>
+    <v-select :items="items" label="Select a genre" solo @change="handleChange" v-model="selection"></v-select>
   </v-container>
 </template>
 
@@ -8,8 +8,14 @@
 export default {
   data() {
     return {
+      selection: null,
       items: this.$store.getters.genreList
     };
+  },
+  methods: {
+    handleChange() {
+      this.$emit("selectionChanged", this.selection);
+    }
   }
 };
 </script>

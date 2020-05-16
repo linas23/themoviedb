@@ -39,16 +39,16 @@ export const actions = {
     },
 
 
-    async getMovieImages(context, id) {
-        return await this.$axios.$get(`${base_url}movie/${id}/images?api_key=${api_key}`);
+    async getMovieImages(context, { id, type }) {
+        return await this.$axios.$get(`${base_url}${type}/${id}/images?api_key=${api_key}`);
     },
 
-    async getCharacterList(context, id) {
-        return await this.$axios.$get(`${base_url}movie/${id}/credits?api_key=${api_key}`);
+    async getCharacterList(context, { id, type }) {
+        return await this.$axios.$get(`${base_url}${type}/${id}/credits?api_key=${api_key}`);
     },
 
-    async getSimilarItems(context, id) {
-        return await this.$axios.$get(`${base_url}movie/${id}/similar?api_key=${api_key}`);
+    async getSimilarItems(context, { id, type }) {
+        return await this.$axios.$get(`${base_url}${type}/${id}/similar?api_key=${api_key}`);
     },
 
     async getTrending(context, type) {
@@ -60,8 +60,20 @@ export const actions = {
         // https://api.themoviedb.org/3/tv/{tv_id}?api_key=<<api_key>>&language=en-US
         console.log(id)
         return await this.$axios.$get(`${base_url}tv/${id}?api_key=${api_key}`)
-    }
+    },
 
+    /* async getCategoryList({ commit }, { category, type }) {
+        commit('clearList', type);
+        console.log(category)
+        // https://api.themoviedb.org/3/discover/movie?api_key=<<api_key>>&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1
+        let { results } = await this.$axios.$get(`${base_url}discover/${type}?api_key=${api_key}&with_genre=${category}`);
+        commit('setList', { type, results })
+    } */
+
+    async getMore({ commit }, { type, page }) {
+        let { results } = await this.$axios.$get(`${base_url}discover/${type}?api_key=${api_key}&page=${page}`);
+        commit('setList', { type, results });
+    }
 
 
 

@@ -43,9 +43,9 @@
           </v-col>
         </v-row>
       </v-card>
-      <movieImages :id="movie.id"></movieImages>
-      <characterList :id="movie.id"></characterList>
-      <similarMovies :id="movie.id"></similarMovies>
+      <movieImages type="movie" :id="movie.id"></movieImages>
+      <characterList type="movie" :id="movie.id"></characterList>
+      <similarMovies type="movie" :id="movie.id"></similarMovies>
     </div>
     <div v-else>
       <v-progress-linear indeterminate></v-progress-linear>

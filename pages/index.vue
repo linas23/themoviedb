@@ -27,7 +27,6 @@
           <v-tabs-items v-model="tab">
             <v-tab-item v-for="i in 2" :key="i">
               <v-card flat elevation="24">
-                <selection></selection>
                 <div v-if="tab==0">
                   <!-- keep alive -->
                   <movieList></movieList>
@@ -45,12 +44,10 @@
 </template>
 
 <script>
-import selection from "~/components/selection";
 import movieList from "~/components/movielist";
 import tvList from "~/components/tvlist";
 export default {
   components: {
-    selection,
     movieList,
     tvList
   },

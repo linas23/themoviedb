@@ -6,7 +6,7 @@
       </content-placeholders>
     </div>
     <div v-else>
-      <div class="display-1 my-5">Movie images</div>
+      <div class="display-1 my-5">{{type}} images</div>
       <v-carousel show-arrows-on-hover hide-delimiters>
         <v-carousel-item
           v-for="(item,i) in images"
@@ -30,13 +30,16 @@ export default {
   props: {
     id: {
       type: Number
+    },
+    type: {
+      type: String
     }
   },
   async created() {
-    let { backdrops: images } = await this.$store.dispatch(
-      "getMovieImages",
-      this.id
-    );
+    let { backdrops: images } = await this.$store.dispatch("getMovieImages", {
+      id: this.id,
+      type: this.type
+    });
     this.images.push(...images);
   }
 };

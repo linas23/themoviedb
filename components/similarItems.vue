@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="display-1 my-5">Similar movies</div>
+    <div class="display-1 my-5">Similar {{type}}s</div>
     <v-row>
       <v-col cols="12" md="4" v-for="(result,index) in results" :key="index">
         <movieCard :data="result"></movieCard>
@@ -23,10 +23,16 @@ export default {
   props: {
     id: {
       type: Number
+    },
+    type: {
+      type: String
     }
   },
   async created() {
-    let { results } = await this.$store.dispatch("getSimilarItems", this.id);
+    let { results } = await this.$store.dispatch("getSimilarItems", {
+      id: this.id,
+      type: this.type
+    });
     this.results.push(...results);
   }
 };

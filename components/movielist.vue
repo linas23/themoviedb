@@ -7,6 +7,9 @@
           <movieCard :data="movie"></movieCard>
         </v-col>
       </v-row>
+      <div class="text-center">
+        <v-btn class="red white--text" x-large @click="getMore">See More</v-btn>
+      </div>
     </v-container>
   </div>
 </template>
@@ -19,15 +22,26 @@ export default {
     movieCard
   },
   data() {
-    return {};
+    return {
+      page: 2
+    };
   },
   computed: {
     ...mapGetters({
       movies: "movieList"
     })
   },
-  created() {
+  mounted() {
     this.$store.dispatch("getList", "movie");
+  },
+  methods: {
+    getMore() {
+      this.$store.dispatch("getMore", { type: "movie", page: this.page });
+      this.page++;
+    }
+    /* changeMovieList(category) {
+      this.$store.dispatch("getCategoryList", { category, type: "movie" });
+    } */
   }
 };
 </script>

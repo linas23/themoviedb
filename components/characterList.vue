@@ -40,10 +40,16 @@ export default {
   props: {
     id: {
       type: Number
+    },
+    type: {
+      type: String
     }
   },
   async created() {
-    let { cast } = await this.$store.dispatch("getCharacterList", this.id);
+    let { cast } = await this.$store.dispatch("getCharacterList", {
+      id: this.id,
+      type: this.type
+    });
     cast = cast.filter(el => el.character);
     this.characters.push(...cast);
   }

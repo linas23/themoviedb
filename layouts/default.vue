@@ -22,19 +22,13 @@
           </v-list-item-icon>
           <v-list-item-content class="white--text">{{link.title}}</v-list-item-content>
         </v-list-item>
-        <v-list-item flat link>
-          <v-list-item-icon>
-            <v-icon color="white" x-large>mdi-account</v-icon>
-          </v-list-item-icon>
-          <v-list-item-content class="white--text">sign in</v-list-item-content>
-        </v-list-item>
       </v-list>
     </v-navigation-drawer>
     <v-app-bar app :clipped-left="!drawer">
       <v-app-bar-nav-icon @click="drawer= !drawer" v-if="!drawer"></v-app-bar-nav-icon>
-      <v-btn text to="/" v-if="!drawer">
-        <v-toolbar-title>The Movies</v-toolbar-title>
-      </v-btn>
+      <nuxt-link text to="/" v-if="!drawer" style="text-decoration:none">
+        <v-toolbar-title class="red--text display-1">The Movies</v-toolbar-title>
+      </nuxt-link>
     </v-app-bar>
     <v-content>
       <nuxt />

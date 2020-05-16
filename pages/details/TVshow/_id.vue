@@ -48,11 +48,23 @@
         </v-card>
       </v-col>
     </v-row>
+    <tvImages :id="tv.id" type="tv"></tvImages>
+    <tvCharacters :id="tv.id" type="tv"></tvCharacters>
+    <similarTvs :id="tv.id" type="tv"></similarTvs>
   </v-container>
 </template>
 
 <script>
+import tvImages from "~/components/movieImages";
+import tvCharacters from "~/components/characterList";
+import SimilarTvs from "~/components/similarItems";
+
 export default {
+  components: {
+    tvImages,
+    tvCharacters,
+    SimilarTvs
+  },
   async asyncData({ store, route }) {
     let tv = await store.dispatch("getTvDetail", route.params.id);
     return { tv };
